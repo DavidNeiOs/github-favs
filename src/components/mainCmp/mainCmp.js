@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchCmp from '../searchCmp/searchCmp';
 import './mainCmp.css';
 
 class MainCmp extends Component {
@@ -6,7 +7,7 @@ class MainCmp extends Component {
         return (
             <div className="main-container">
                 <div className="left-container">
-
+                    <SearchCmp />
                 </div>
                 <div className="right-container">
 

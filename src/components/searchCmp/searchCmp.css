@@ -1,0 +1,24 @@
+.form-container {
+    padding: 5vh;
+    text-align: center;
+}
+.form__input {
+    width: 68%;
+    height: 4.4vh;
+    margin-right: 2%;
+    padding: 2vh;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+.form__submit {
+    display: inline-block;
+    width: 20%;
+    padding: 1.2vh;
+    background-color: #7433F2;
+    color: white;
+    font-weight: 600;
+    border: 1px solid #673BC3;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
