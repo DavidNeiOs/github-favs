@@ -1,0 +1,9 @@
+.header {
+    width: 100%;
+    text-align: center;
+    background-color: #7433F1;
+    padding: 4vh 0;
+}
+.header-title {
+    color: white;
+}
