@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchCmp from '../searchCmp/searchCmp';
+import ListCmp from '../listCmp/listCmp';
 import './mainCmp.css';
 
 class MainCmp extends Component {
@@ -8,9 +9,10 @@ class MainCmp extends Component {
             <div className="main-container">
                 <div className="left-container">
                     <SearchCmp />
+                    <ListCmp favorite={false}/>
                 </div>
                 <div className="right-container">
-
+                    <ListCmp favorite={true} />
                 </div>
             </div>
         )

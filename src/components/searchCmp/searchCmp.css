@@ -22,3 +22,6 @@
     border-radius: 4px;
     font-size: 0.8em;
 }
+.form__submit:hover {
+    opacity: 0.95;
+}

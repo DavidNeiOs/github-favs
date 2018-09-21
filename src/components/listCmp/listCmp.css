@@ -1,0 +1,25 @@
+.list-container {
+    padding: 0 0 0 5vw;
+}
+
+.list__header__title {
+    display: inline-block;
+    width: 32%;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 1vh;
+}
+.repo-list {
+    list-style: none;
+}
+.repo-list div {
+    display: inline-block;
+    width: 32%;
+    font-size: 0.8em;
+}
+.repo {
+    padding: 1vh 0;
+}
+.repo-list .repo__version {
+    width: 25%;
+}
