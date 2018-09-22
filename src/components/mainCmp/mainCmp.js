@@ -9,10 +9,10 @@ class MainCmp extends Component {
             <div className="main-container">
                 <div className="left-container">
                     <SearchCmp />
-                    <ListCmp favorite={false}/>
+                    <ListCmp />
                 </div>
                 <div className="right-container">
-                    <ListCmp favorite={true} />
+                    <ListCmp favorite />
                 </div>
             </div>
         )

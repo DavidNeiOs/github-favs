@@ -1,5 +1,6 @@
 .header {
     width: 100%;
+    min-width: 1000px;
     text-align: center;
     background-color: #7433F1;
     padding: 4vh 0;

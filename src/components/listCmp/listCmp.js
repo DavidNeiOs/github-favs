@@ -5,25 +5,60 @@ import './listCmp.css';
 class ListCmp extends Component {
     constructor(props){
         super(props);
+        this.addItem = this.addItem.bind(this);
+        this.removeItem = this.removeItem.bind(this);
+        this.formatItems = this.formatItems.bind(this);
     }
+
     formatItems(repo) {
         return (
             <li className="repo">
-                <div className="repo__name">
+                <a href={repo.url} target="_blank" className="repo__name">
                     {repo.nameWithOwner}
-                </div>
+                </a>
                 <div className="repo__language">
                     {repo.mainLanguage}
                 </div>
                 <div className="repo__version">
                     {repo.latestRelease}
                 </div>
-                <button>
-                    Add
-                </button>
+                {
+                    // render different button with different functionality
+                    // dependeing on the prop 'favorite'
+                    !this.props.favorite ?
+                        <button 
+                            className={repo.added ? "repo__button hidden" : "repo__button"} 
+                            onClick={() => this.addItem(repo)}
+                        >
+                            Add
+                        </button>
+                    :
+                        <button className="repo__button" onClick={() => this.removeItem(repo)}>
+                            Remove
+                        </button>
+                }
             </li>
         )
     }
+
+    addItem(repo) {
+        repo.added = true;
+        let newArr = this.props.fList.slice();
+        newArr.push(repo);
+        this.props.dispatch({
+            type: 'addRepo',
+            content: newArr
+        })
+    }
+
+    removeItem(repo) {
+        repo.added = false;
+        this.props.dispatch({
+            type: 'removeRepo',
+            content: repo
+        })
+    }
+
     render() {
       return !this.props.favorite ?
         (

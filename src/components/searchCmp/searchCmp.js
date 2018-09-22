@@ -2,28 +2,28 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import "./searchCmp.css";
 
-const TOKEN = "db6ca9d088f13cdefb5eb8f0fc9d7ed80c9ed71b";
+const TOKEN = "";
 const url = "https://api.github.com/graphql";
 
 class SearchCmp extends Component {
   constructor() {
     super();
     this.state = {
-      response: "",
       inputValue: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
   formatInfo(arr) {
     // if version release does not exist set a string so it does not break
     let info = arr.map(repoInfo => {
-      let mLanguage = repoInfo.node.languages.edges[0];
+      let mLanguage = repoInfo.node.primaryLanguage;
       let lRelease = repoInfo.node.releases.edges[0];
         return {
           nameWithOwner: repoInfo.node.nameWithOwner,
           url: repoInfo.node.url,
-          mainLanguage: mLanguage ? mLanguage.node.name : '-',
+          mainLanguage: mLanguage ? mLanguage.name : '-',
           latestRelease: lRelease ? lRelease.node.name : '-',
           added: false
         }
@@ -37,10 +37,19 @@ class SearchCmp extends Component {
       let val = evt.target.value;
       this.setState({inputValue: val});
       // if value === "" render a new empty list
+      if(!val){
+        this.props.dispatch({
+          type: 'searchList',
+          content: []
+        })
+      }
   }
   
   handleSubmit(evt) {
     evt.preventDefault();
+    if(!this.state.inputValue){
+      return;
+    }
     // CREATE THE QUERY TO BE SENT
     const myQuery = {
       query: `
@@ -51,12 +60,8 @@ class SearchCmp extends Component {
               ... on Repository {
                 nameWithOwner
                 url
-                languages(first: 1){
-                  edges {
-                    node {
-                      name
-                    }
-                  }
+                primaryLanguage{
+              		name
                 }
                 releases(last: 1){
                   edges {
@@ -82,6 +87,7 @@ class SearchCmp extends Component {
     })
       .then( response => response.text())
       .then( responseBody => {
+        try {
           let parsed = JSON.parse(responseBody);
           let data = this.formatInfo(parsed.data.search.edges);
           console.log(data);
@@ -90,6 +96,9 @@ class SearchCmp extends Component {
             type: 'searchList',
             content: data
           })
+        } catch (error) {
+          alert('Add token for the app to work');
+        }  
       })
 }
   render() {
