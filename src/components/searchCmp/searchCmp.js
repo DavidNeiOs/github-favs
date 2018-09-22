@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import "./searchCmp.css";
 
-const TOKEN = "";
+const TOKEN = "0345d3af26ce1b8058e04b258cb7807d6a420656";
 const url = "https://api.github.com/graphql";
 
 class SearchCmp extends Component {
